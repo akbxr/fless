@@ -1,39 +1,26 @@
----
-const API = await fetch("https://ipapi.co/json/");
-
-const data = await API.json();
-
-const response = {
-  ip: data.ip,
-  city: data.city,
-  // region: data.region,
-  country: data.country,
-  country_name: data.country_name,
-  // postal: data.postal,
-  // latitude: data.latitude,
-  // longitude: data.longitude,
-  // timezone: data.timezone,
-  // utc_offset: data.utc_offset,
-  // country_calling_code: data.country_calling_code,
-  // currency: data.currency,
-  // languages: data.languages,
-  // asn: data.asn,
-  org: data.org,
-  // hostname: data.hostname,
-};
----
-
 <div
   class="bg-white rounded-xl border-2 border-black shadow-3xl p-8 m-8 text-center"
 >
   <h1 class="text-xl font-bold mb-2">Your IP</h1>
   <p class="font-semibold">
-    IP: {response.ip}
+    IP: <span id="ip"></span>
     <br />
-    CITY: {response.city}
+    CITY: <span id="city"></span>
     <br />
-    COUNTRY: {response.country_name}
+    COUNTRY: <span id="country"></span>
     <br />
-    ISP: {response.org}
+    ISP: <span id="isp"></span>
   </p>
 </div>
+
+<script>
+  fetch("https://ipapi.co/json/")
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("ip").textContent = data.ip;
+      document.getElementById("city").textContent = data.city;
+      document.getElementById("country").textContent = data.country_name;
+      document.getElementById("isp").textContent = data.org;
+    });
+</script>
+
