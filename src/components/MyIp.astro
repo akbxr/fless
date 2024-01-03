@@ -1,0 +1,39 @@
+---
+const API = await fetch("https://ipapi.co/json/");
+
+const data = await API.json();
+
+const response = {
+  ip: data.ip,
+  city: data.city,
+  // region: data.region,
+  country: data.country,
+  country_name: data.country_name,
+  // postal: data.postal,
+  // latitude: data.latitude,
+  // longitude: data.longitude,
+  // timezone: data.timezone,
+  // utc_offset: data.utc_offset,
+  // country_calling_code: data.country_calling_code,
+  // currency: data.currency,
+  // languages: data.languages,
+  // asn: data.asn,
+  org: data.org,
+  // hostname: data.hostname,
+};
+---
+
+<div
+  class="bg-white rounded-xl border-2 border-black shadow-3xl p-8 m-8 text-center"
+>
+  <h1 class="text-xl font-bold mb-2">Your IP</h1>
+  <p class="font-semibold">
+    IP: {response.ip}
+    <br />
+    CITY: {response.city}
+    <br />
+    COUNTRY: {response.country_name}
+    <br />
+    ISP: {response.org}
+  </p>
+</div>
